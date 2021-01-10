@@ -11,14 +11,17 @@
 #include "glut.h"
 
 
-/* Identificadores de las display list */
-GLuint abeto, escalera, arco, arcos;
+// Identificadores de las display list
+GLuint abeto,arbol,carballo,puerta,pomo,ventana,ventanal;
 
-/* Definición Funciones de modelado */
-void IniciaDisplayLists (void);
-void CreaAbeto(void);
-void CreaEscalera(void);
-void CreaArco();
-void CreaArcos();
+// Definición Funciones de modelado
+void IniciaDisplayLists();
+void CreaAbeto();
+void CreaArbol();
+void CreaCarballo();
+void CreaPuerta();
+void CreaPomo();
+void CreaVentana();
+void CreaVentanal();
 
 #endif

@@ -271,7 +271,7 @@ void igCreateQuadricObject (int pu, int pv, float uMax, float vMax, float R, flo
 
     v = 0.0; 
     u =0.0; 
-    inc_u = uMax/pu; /* donde 10 es el número de puntos en u */ 
+    inc_u = uMax/pu; // donde 10 es el número de puntos en u
 	inc_v = vMax/pv;
 
 	for (j = 0; j <= pv; j++)
@@ -426,7 +426,7 @@ void igCreateSolidQuadricObject (int pu, int pv, float uMax, float vMax, float R
 
     v = 0.0; 
     u =0.0; 
-    inc_u = uMax/pu; /* donde 10 es el número de puntos en u */ 
+    inc_u = uMax/pu; // donde 10 es el número de puntos en u
 	inc_v = vMax/pv;
 
 	for (j = 0; j < pv; j++)
@@ -442,7 +442,7 @@ void igCreateSolidQuadricObject (int pu, int pv, float uMax, float vMax, float R
 				x= xSuperQuadric (u, v, R, s1, s2); 
 				y= ySuperQuadric (u, v, R, s1, s2); 
 				z= zSuperQuadric (u, v, R, s1, s2); 
-				glColor3f(x, y, z);
+				//glColor3f(x, y, z);
 				glVertex3f (x, y, z);
 				
 				glTexCoord2f (u, v+inc_v);
@@ -453,7 +453,7 @@ void igCreateSolidQuadricObject (int pu, int pv, float uMax, float vMax, float R
 				x= xSuperQuadric (u, v+inc_v, R, s1, s2); 
 				y= ySuperQuadric (u, v+inc_v, R, s1, s2); 
 				z= zSuperQuadric (u, v+inc_v, R, s1, s2); 
-				glColor3f(x, y, z);
+				//glColor3f(x, y, z);
 				glVertex3f (x, y, z); 
 				u= u+ inc_u; 
 			} 
@@ -565,4 +565,14 @@ void igSolidCube (void)
 		glVertex3fv (vertices[7]);
 		glVertex3fv (vertices[6]);
 	glEnd ();
+}
+
+/******************************************************************************************/
+/* Crea un cilindro a partir de las ecuaciones de la supercuadrica                        */
+/* Parametros: int pu --> Numero de divisiones del parametro u                            */
+/*             int pv --> Numero de divisiones del parametro v                            */
+/* Salida: Ninguna                                                                        */
+/******************************************************************************************/
+void igSolidCylinder(int pu, int pv){
+	igCreateSolidQuadricObject(pu, pv, 1.0f, 1.0f, 1.0f,0.0f,1.0f);
 }
