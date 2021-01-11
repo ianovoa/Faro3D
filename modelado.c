@@ -24,6 +24,7 @@ void IniciaDisplayLists (void){
 	CreaPuerta();
 	CreaVentana();
 	CreaVentanal();
+	CreaVentanalLuz();
 }
 
 /*void CreaArco() {
@@ -48,23 +49,6 @@ void IniciaDisplayLists (void){
 			glScalef(2.0f, 0.5f, 0.5f);
 			igWireCube();
 		glPopMatrix();
-		glEndList();
-	}
-}
-
-void CreaArcos() {
-	arcos = glGenLists(1);
-	if (arcos != 0) { // Cero no es un identificador valido para una display list
-		glNewList(arcos, GL_COMPILE);
-		//  Código para dibujar los arcos
-		for (int i = 0; i < 12; i++) {
-			glPushMatrix();
-				glRotatef(30.0f * i, 0.0f, 1.0f, 0.0f);
-				glTranslatef(0.0f, 0.0f, -2.0f);
-				glScalef(0.5f, 0.5f, 0.5f);
-				glCallList(arco);
-			glPopMatrix();
-		}
 		glEndList();
 	}
 }
@@ -331,6 +315,25 @@ void CreaVentanal() {
 			glScalef(0.75f, 1.5f, 0.05f);
 			igSolidCube();
 		glPopMatrix();
+
+		glEndList();
+	}
+}
+
+void CreaVentanalLuz() {
+	luz = glGenLists(1);
+	if (luz != 0) { // Cero no es un identificador valido para una display list
+		glNewList(luz, GL_COMPILE);
+
+		//  Código para dibujar cristales del faro
+		for (int i = 0; i < 6; i++) {
+			glPushMatrix();
+				glRotatef(60.0f * i, 0.0f, 1.0f, 0.0f);
+				glTranslatef(0.65f, 0.0f, 0.0f);
+				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+				glCallList(ventanal);
+			glPopMatrix();
+		}
 
 		glEndList();
 	}
