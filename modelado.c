@@ -23,8 +23,8 @@ void IniciaDisplayLists (void){
 	CreaPomo();
 	CreaPuerta();
 	CreaVentana();
+	CreaVidrio();
 	CreaVentanal();
-	CreaVentanalLuz();
 }
 
 /*void CreaArco() {
@@ -274,23 +274,23 @@ void CreaVentana() {
 	}
 }
 
-void CreaVentanal() {
-	ventanal = glGenLists(1);
-	if (ventanal != 0) { // Cero no es un identificador valido para una display list
-		glNewList(ventanal, GL_COMPILE);
+void CreaVidrio() {
+	vidrio = glGenLists(1);
+	if (vidrio != 0) { // Cero no es un identificador valido para una display list
+		glNewList(vidrio, GL_COMPILE);
 
-		//  Código para dibujar la puerta
+		//  Código para dibujar el vidrio
 		//  Primero dibujo el marco
 		glPushMatrix();
 			glColor3f(0.9f, 0.91f, 0.91f);
-			glTranslatef(0.35f, 0.0f, 0.0f);
+			glTranslatef(0.7f, 0.0f, 0.0f);
 			glScalef(0.1f, 1.5f, 0.1f);
 			igSolidCube();
 		glPopMatrix();
 
 		glPushMatrix();
 			glColor3f(0.9f, 0.91f, 0.91f);
-			glTranslatef(-0.35f, 0.0f, 0.0f);
+			glTranslatef(-0.7f, 0.0f, 0.0f);
 			glScalef(0.1f, 1.5f, 0.1f);
 			igSolidCube();
 		glPopMatrix();
@@ -298,21 +298,21 @@ void CreaVentanal() {
 		glPushMatrix();
 			glColor3f(0.9f, 0.91f, 0.91f);
 			glTranslatef(0.0f, 0.8f, 0.0f);
-			glScalef(0.8f, 0.1f, 0.1f);
+			glScalef(1.5f, 0.1f, 0.1f);
 			igSolidCube();
 		glPopMatrix();
 
 		glPushMatrix();
 			glColor3f(0.9f, 0.91f, 0.91f);
 			glTranslatef(0.0f, -0.8f, 0.0f);
-			glScalef(0.8f, 0.1f, 0.1f);
+			glScalef(1.5f, 0.1f, 0.1f);
 			igSolidCube();
 		glPopMatrix();
 
 		//  Segundo dibujo el vidrio
 		glPushMatrix();
 			glColor3f(0.68f, 0.84f, 0.95f);
-			glScalef(0.75f, 1.5f, 0.05f);
+			glScalef(1.45f, 1.5f, 0.05f);
 			igSolidCube();
 		glPopMatrix();
 
@@ -320,20 +320,33 @@ void CreaVentanal() {
 	}
 }
 
-void CreaVentanalLuz() {
-	luz = glGenLists(1);
-	if (luz != 0) { // Cero no es un identificador valido para una display list
-		glNewList(luz, GL_COMPILE);
+void CreaVentanal() {
+	ventanal = glGenLists(1);
+	if (ventanal != 0) { // Cero no es un identificador valido para una display list
+		glNewList(ventanal, GL_COMPILE);
 
 		//  Código para dibujar cristales del faro
 		for (int i = 0; i < 6; i++) {
 			glPushMatrix();
 				glRotatef(60.0f * i, 0.0f, 1.0f, 0.0f);
-				glTranslatef(0.65f, 0.0f, 0.0f);
+				glTranslatef(1.25f, 0.0f, 0.0f);
 				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
-				glCallList(ventanal);
+				glCallList(vidrio);
 			glPopMatrix();
 		}
+
+		glEndList();
+	}
+}
+
+void CreaFaro() {
+	faro = glGenLists(1);
+	if (faro != 0) { // Cero no es un identificador valido para una display list
+		glNewList(faro, GL_COMPILE);
+
+		glPushMatrix();
+
+		glPopMatrix();
 
 		glEndList();
 	}

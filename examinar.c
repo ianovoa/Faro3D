@@ -194,9 +194,12 @@ void Dibuja (void)
 	gluLookAt (ox, oy, oz, ix, iy, iz, 0, 1, 0);
 
 	// Llamadas a las display lists
-	glCallList(luz);
+	glCallList(ventanal);
 
-	/*glTranslatef(2.0f, 0.0f, 0.0f);
+	/*glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+	igSolidCylinder(100,100);
+
+	glTranslatef(2.0f, 0.0f, 0.0f);
 	glCallList(puerta);
 	
 	glTranslatef(-4.0f, 0.0f, 0.0f);
