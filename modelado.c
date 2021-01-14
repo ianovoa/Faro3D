@@ -24,7 +24,7 @@ void IniciaDisplayLists (void){
 	CreaPuerta();
 	CreaVentana();
 	CreaVidrio();
-	CreaVentanal();
+	CreaFaro();
 }
 
 /*void CreaArco() {
@@ -88,7 +88,7 @@ void CreaAbeto(void) {
 		glNewList(abeto, GL_COMPILE);
 
 		//  Código para dibujar el abeto
-		//  Primero dibujo la copa
+		//  Copa
 		glPushMatrix();
 			glColor3f(0.11f, 0.51f, 0.28f);
 			glScalef(0.75f, 1.0f, 0.75f);
@@ -107,7 +107,7 @@ void CreaAbeto(void) {
 			igSolidCone(100, 100);
 		glPopMatrix();
 
-		//  Segundo dibujo el tronco
+		//  Tronco
 		glPushMatrix();
 			glColor3f(0.43f, 0.17f, 0.0f);
 			glScalef(0.1f, 1.0f, 0.1f);
@@ -123,7 +123,7 @@ void CreaArbol() {
 		glNewList(arbol, GL_COMPILE);
 
 		//  Código para dibujar el arbol
-		//  Primero dibujo la copa
+		//  Copa
 		glPushMatrix();
 			glColor3f(0.11f, 0.51f, 0.28f);
 			glScalef(0.5f, 1.0f, 0.5f);
@@ -131,7 +131,7 @@ void CreaArbol() {
 			igSolidSphere(100,100);
 		glPopMatrix();
 
-		//  Segundo dibujo el tronco
+		//  Tronco
 		glPushMatrix();
 			glColor3f(0.43f, 0.17f, 0.0f);
 			glScalef(0.1f, 1.0f, 0.1f);
@@ -148,7 +148,7 @@ void CreaCarballo() {
 		glNewList(carballo, GL_COMPILE);
 
 		//  Código para dibujar el carballo
-		//  Primero dibujo la copa
+		//  Copa
 		glPushMatrix();
 			glColor3f(0.11f, 0.51f, 0.28f);
 			glScalef(1.0f, 0.9f, 1.0f);
@@ -156,7 +156,7 @@ void CreaCarballo() {
 			igSolidSphere(100, 100);
 		glPopMatrix();
 
-		//  Segundo dibujo el tronco
+		//  Tronco
 		glPushMatrix();
 			glColor3f(0.43f, 0.17f, 0.0f);
 			glScalef(0.1f, 1.0f, 0.1f);
@@ -196,14 +196,14 @@ void CreaPuerta() {
 		glNewList(puerta, GL_COMPILE);
 
 		//  Código para dibujar la puerta
-		//  Primero dibujo la tabla
+		//  Tabla
 		glPushMatrix();
 			glColor3f(0.9f, 0.6f, 0.4f);
 			glScalef(0.85f, 2.0f, 0.1f);
 			igSolidCube();
 		glPopMatrix();
 
-		//  Segundo dibujo el pomo
+		//  Pomo
 		glPushMatrix();
 			glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 			glScalef(0.05f, 0.1f, 0.05f);
@@ -221,7 +221,7 @@ void CreaVentana() {
 		glNewList(ventana, GL_COMPILE);
 
 		//  Código para dibujar la puerta
-		//  Primero dibujo el marco
+		//  Marco
 		glPushMatrix();
 			glColor3f(0.9f, 0.91f, 0.91f);
 			glTranslatef(0.35f, 0.0f, 0.0f);
@@ -250,14 +250,14 @@ void CreaVentana() {
 			igSolidCube();
 		glPopMatrix();
 
-		//  Segundo dibujo el vidrio
+		//  Vidrio
 		glPushMatrix();
 			glColor3f(0.68f, 0.84f, 0.95f);
 			glScalef(0.75f, 0.8f, 0.05f);
 			igSolidCube();
 		glPopMatrix();
 
-		//  Tercero dibujo el marco interno
+		//  Marco interno
 		glPushMatrix();
 			glColor3f(0.9f, 0.91f, 0.91f);
 			glScalef(0.8f, 0.08f, 0.07f);
@@ -280,7 +280,7 @@ void CreaVidrio() {
 		glNewList(vidrio, GL_COMPILE);
 
 		//  Código para dibujar el vidrio
-		//  Primero dibujo el marco
+		//  Marco
 		glPushMatrix();
 			glColor3f(0.9f, 0.91f, 0.91f);
 			glTranslatef(0.7f, 0.0f, 0.0f);
@@ -309,7 +309,7 @@ void CreaVidrio() {
 			igSolidCube();
 		glPopMatrix();
 
-		//  Segundo dibujo el vidrio
+		//  Vidrio
 		glPushMatrix();
 			glColor3f(0.68f, 0.84f, 0.95f);
 			glScalef(1.45f, 1.5f, 0.05f);
@@ -320,32 +320,95 @@ void CreaVidrio() {
 	}
 }
 
-void CreaVentanal() {
-	ventanal = glGenLists(1);
-	if (ventanal != 0) { // Cero no es un identificador valido para una display list
-		glNewList(ventanal, GL_COMPILE);
-
-		//  Código para dibujar cristales del faro
-		for (int i = 0; i < 6; i++) {
-			glPushMatrix();
-				glRotatef(60.0f * i, 0.0f, 1.0f, 0.0f);
-				glTranslatef(1.25f, 0.0f, 0.0f);
-				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
-				glCallList(vidrio);
-			glPopMatrix();
-		}
-
-		glEndList();
-	}
-}
-
 void CreaFaro() {
 	faro = glGenLists(1);
 	if (faro != 0) { // Cero no es un identificador valido para una display list
 		glNewList(faro, GL_COMPILE);
 
+		//  Código para dibujar el faro
+		//  Base
 		glPushMatrix();
+			glColor3f(0.57f, 0.17f, 0.13f);
+			glScalef(4.5f, 1.0f, 4.5f);
+			igSolidCone(100,100);
+		glPopMatrix();
 
+		//  Torre
+		glPushMatrix();
+			glColor3f(0.57f, 0.17f, 0.13f);
+			glTranslatef(0.0f, 3.0f, 0.0f);
+			glScalef(2.5f, 3.0f, 2.5f);
+			igSolidCylinder(100, 100);
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.93f, 0.94f, 0.95f);
+			glTranslatef(0.0f, 9.0f, 0.0f);
+			glScalef(2.5f, 3.0f, 2.5f);
+			igSolidCylinder(100, 100);
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.57f, 0.17f, 0.13f);
+			glTranslatef(0.0f, 15.0f, 0.0f);
+			glScalef(2.5f, 3.0f, 2.5f);
+			igSolidCylinder(100, 100);
+		glPopMatrix();
+
+		//  Cornisa
+		glPushMatrix();
+			glColor3f(0.93f, 0.94f, 0.95f);
+			glTranslatef(0.0f, 18.0f, 0.0f);
+			glScalef(3.0f, 0.2f, 3.0f);
+			glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
+			igSolidCone(100, 100);
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.57f, 0.17f, 0.13f);
+			glTranslatef(0.0f, 18.25f, 0.0f);
+			glScalef(3.0f, 0.25f, 3.0f);
+			igSolidCylinder(100, 100);
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.93f, 0.94f, 0.95f);
+			glTranslatef(0.0f, 18.5f, 0.0f);
+			glScalef(3.0f, 0.2f, 3.0f);
+			igSolidCone(100, 100);
+		glPopMatrix();
+
+		//  Ventanal
+		for (int i = 0; i < 10; i++) {
+			glPushMatrix();
+				glRotatef(36.0f * i, 0.0f, 1.0f, 0.0f);
+				glTranslatef(2.2f, 19.35f, 0.0f);
+				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+				glCallList(vidrio);
+			glPopMatrix();
+		}
+
+		//  Tejado
+		glPushMatrix();
+			glColor3f(0.93f, 0.94f, 0.95f);
+			glTranslatef(0.0f, 20.25f, 0.0f);
+			glScalef(3.0f, 0.2f, 3.0f);
+			glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
+			igSolidCone(100, 100);
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.57f, 0.17f, 0.13f);
+			glTranslatef(0.0f, 20.5f, 0.0f);
+			glScalef(3.0f, 0.25f, 3.0f);
+			igSolidCylinder(100, 100);
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.57f, 0.17f, 0.13f);
+			glTranslatef(0.0f, 20.75f, 0.0f);
+			glScalef(3.0f, 1.0f, 3.0f);
+			igSolidCone(100, 100);
 		glPopMatrix();
 
 		glEndList();
