@@ -27,33 +27,7 @@ void IniciaDisplayLists (void){
 	CreaFaro();
 }
 
-/*void CreaArco() {
-	arco = glGenLists(1);
-	if (arco != 0) { // Cero no es un identificador valido para una display list
-		glNewList(arco, GL_COMPILE);
-		//  Código para dibujar el arco
-		glPushMatrix();
-			glTranslatef(0.75f,0.0f,0.0f);
-			glScalef(0.5f, 2.0f, 0.5f);
-			igWireCube();
-		glPopMatrix();
-
-		glPushMatrix();
-			glTranslatef(-0.75f, 0.0f, 0.0f);
-			glScalef(0.5f, 2.0f, 0.5f);
-			igWireCube();
-		glPopMatrix();
-
-		glPushMatrix();
-			glTranslatef(0.0f, 0.75f, 0.0f);
-			glScalef(2.0f, 0.5f, 0.5f);
-			igWireCube();
-		glPopMatrix();
-		glEndList();
-	}
-}
-
-void CreaEscalera() {
+/*void CreaEscalera() {
 	escalera=glGenLists(1);
 	if (escalera !=0) { // Cero no es un identificador valido para una display list
 		glNewList(escalera, GL_COMPILE);
@@ -410,6 +384,39 @@ void CreaFaro() {
 			glScalef(3.0f, 1.0f, 3.0f);
 			igSolidCone(100, 100);
 		glPopMatrix();
+
+		//  Puerta
+		glPushMatrix();
+			glTranslatef(0.0f, 1.5f, 2.5f);
+			glCallList(puerta);
+		glPopMatrix();
+
+		//  Ventanas
+		for (int i = 0; i < 3; i++) {
+			glPushMatrix();
+				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+				glTranslatef(0.0f, 3.0f + 6.0f * i, 2.5f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+				glTranslatef(0.0f, 3.0f + 6.0f * i, -2.5f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glTranslatef(0.0f, 3.0f + 6.0f * i, -2.5f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			if (i) {
+				glPushMatrix();
+					glTranslatef(0.0f, 3.0f + 6.0f * i, 2.5f);
+					glCallList(ventana);
+				glPopMatrix();
+			}
+		}
 
 		glEndList();
 	}

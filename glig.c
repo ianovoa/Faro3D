@@ -2,7 +2,6 @@
 /*                                                                       */
 /*                 glig.c LIBRERIA DE MODELADO GEOMETRICO	             */
 /*                                                                       */
-/*   Rev. 2.0  01/01/2002   AUTORES: O. Belmonte, M. Chover, J. Ribelles */
 /*                                                                       */
 /*************************************************************************/
 
@@ -442,7 +441,6 @@ void igCreateSolidQuadricObject (int pu, int pv, float uMax, float vMax, float R
 				x= xSuperQuadric (u, v, R, s1, s2); 
 				y= ySuperQuadric (u, v, R, s1, s2); 
 				z= zSuperQuadric (u, v, R, s1, s2); 
-				//glColor3f(x, y, z);
 				glVertex3f (x, y, z);
 				
 				glTexCoord2f (u, v+inc_v);
@@ -453,7 +451,6 @@ void igCreateSolidQuadricObject (int pu, int pv, float uMax, float vMax, float R
 				x= xSuperQuadric (u, v+inc_v, R, s1, s2); 
 				y= ySuperQuadric (u, v+inc_v, R, s1, s2); 
 				z= zSuperQuadric (u, v+inc_v, R, s1, s2); 
-				//glColor3f(x, y, z);
 				glVertex3f (x, y, z); 
 				u= u+ inc_u; 
 			} 
