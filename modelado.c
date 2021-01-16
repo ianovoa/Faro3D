@@ -25,6 +25,7 @@ void IniciaDisplayLists (void){
 	CreaVentana();
 	CreaVidrio();
 	CreaFaro();
+	CreaCasa();
 }
 
 /*void CreaEscalera() {
@@ -302,7 +303,7 @@ void CreaFaro() {
 		//  Código para dibujar el faro
 		//  Base
 		glPushMatrix();
-			glColor3f(0.57f, 0.17f, 0.13f);
+			glColor3f(0.48f, 0.49f, 0.49f);
 			glScalef(4.5f, 1.0f, 4.5f);
 			igSolidCone(100,100);
 		glPopMatrix();
@@ -392,31 +393,72 @@ void CreaFaro() {
 		glPopMatrix();
 
 		//  Ventanas
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 2; i++) {
 			glPushMatrix();
 				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
-				glTranslatef(0.0f, 3.0f + 6.0f * i, 2.5f);
+				glTranslatef(0.0f, 9.0f + 6.0f * i, 2.5f);
 				glCallList(ventana);
 			glPopMatrix();
 
 			glPushMatrix();
 				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
-				glTranslatef(0.0f, 3.0f + 6.0f * i, -2.5f);
+				glTranslatef(0.0f, 9.0f + 6.0f * i, -2.5f);
 				glCallList(ventana);
 			glPopMatrix();
 
 			glPushMatrix();
-				glTranslatef(0.0f, 3.0f + 6.0f * i, -2.5f);
+				glTranslatef(0.0f, 9.0f + 6.0f * i, -2.5f);
 				glCallList(ventana);
 			glPopMatrix();
 
-			if (i) {
-				glPushMatrix();
-					glTranslatef(0.0f, 3.0f + 6.0f * i, 2.5f);
-					glCallList(ventana);
-				glPopMatrix();
-			}
+			glPushMatrix();
+				glTranslatef(0.0f, 9.0f + 6.0f * i, 2.5f);
+				glCallList(ventana);
+			glPopMatrix();
 		}
+
+		glEndList();
+	}
+}
+
+void CreaCasa() {
+	casa = glGenLists(1);
+	if (casa != 0) { // Cero no es un identificador valido para una display list
+		glNewList(casa, GL_COMPILE);
+
+		//  Código para dibujar la casa
+		//  Estructura
+		glPushMatrix();
+			glColor3f(0.93f, 0.94f, 0.95f);
+			glScalef(8.0f, 4.5f, 8.0f);
+			igSolidCube();
+		glPopMatrix();
+
+		//  Tejado
+		glPushMatrix();
+			glColor3f(0.93f, 0.94f, 0.95f);
+			glTranslatef(0.0f, 2.9f, 0.0f);
+			glScalef(8.0f, 1.5f, 8.0f);
+			igTriangularPrism();
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.89f, 0.45f, 0.36f);
+			glTranslatef(0.0f, 2.9f, 0.0f);
+			glScalef(10.0f, 2.0f, 7.99f);
+			igTriangularPrism();
+		glPopMatrix();
+
+		//  Puerta
+		glPushMatrix();
+			glTranslatef(0.0f, -1.25f, 4.0f);
+			glCallList(puerta);
+		glPopMatrix();
+
+		//  Ventanas
+		glPushMatrix();
+
+		glPopMatrix();
 
 		glEndList();
 	}

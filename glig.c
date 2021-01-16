@@ -2,11 +2,9 @@
 /*                                                                       */
 /*                 glig.c LIBRERIA DE MODELADO GEOMETRICO	             */
 /*                                                                       */
-/*                                                                       */
 /*************************************************************************/
 
 /***************** INCLUDES DE LAS LIBRERIAS NECESARIAS ******************/
-
 #include "glut.h"
 #include <math.h>
 #include <stdio.h>
@@ -17,6 +15,7 @@
 #define BETA 2*PI*u
 #define E 0.001
 #define F 0.002
+
 
 /************************* FUNCIONES BASICAS **********************************************/
 /******************************************************************************************/
@@ -50,7 +49,6 @@ float xSuperQuadric (float u, float v, float R, float s1, float s2)
 
 }
 
-
 /******************************************************************************************/
 /* Devuelve la coordenada de un punto en R3 a partir de un punto (u,v)                    */
 /*   de un espacio parametrico en R2                                                      */
@@ -74,7 +72,6 @@ float ySuperQuadric (float u, float v, float R, float s1, float s2)
 
 	return (R*powsinalfa);
 }
-
 
 /******************************************************************************************/
 /* Devuelve la coordenada de un punto en R3 a partir de un punto (u,v)                    */
@@ -106,7 +103,6 @@ float zSuperQuadric(float u, float v, float R, float s1, float s2)
 	return(R*powcosalfa*powsinbeta);
 }
 
-
 /******************************************************************************************/
 /* Calcula la variacion en x para un incremento de u, derivada de x con respecto de u     */
 /* Parametros: float u --> Primera coordenada de un punto en R2                           */
@@ -120,7 +116,6 @@ float dxuSuperQuadric(float u, float v, float R, float s1, float s2)
 {
 	return((xSuperQuadric(u+E,v,R,s1,s2)-xSuperQuadric(u-E,v,R,s1,s2))/(2*E));
 }
-
 
 /******************************************************************************************/
 /* Calcula la variacion en y para un incremento de u, derivada de y con respecto de u     */
@@ -136,7 +131,6 @@ float dyuSuperQuadric(float u, float v, float R, float s1, float s2)
 	return((ySuperQuadric(u+E,v,R,s1,s2)-ySuperQuadric(u-E,v,R,s1,s2))/(2*E));
 }
 
-
 /******************************************************************************************/
 /* Calcula la variacion en z para un incremento de u, derivada de z con respecto de u     */
 /* Parametros: float u --> Primera coordenada de un punto en R2                           */
@@ -151,7 +145,6 @@ float dzuSuperQuadric(float u, float v, float R, float s1, float s2)
 	return((zSuperQuadric(u+E,v,R,s1,s2)-zSuperQuadric(u-E,v,R,s1,s2))/(2*E));
 }
 
-
 /******************************************************************************************/
 /* Calcula la variacion en x para un incremento de v, derivada de x con respecto de v     */
 /* Parametros: float u --> Primera coordenada de un punto en R2                           */
@@ -165,7 +158,6 @@ float dxvSuperQuadric(float u, float v, float R, float s1, float s2)
 {
 	return((xSuperQuadric(u,v+E,R,s1,s2)-xSuperQuadric(u,v-E,R,s1,s2))/(2*E));
 }
-
 
 /******************************************************************************************/
 /* Calcula la variacion en y para un incremento de u, derivada de y con respecto de v     */
@@ -247,9 +239,6 @@ float nzSuperQuadric(float u, float v, float R, float s1, float s2)
 }
 
 
-
-
-
 /********************** RUTINA DE DIBUJO *********************************/
 /******************************************************************************************/
 /* Crea una cuadrica segun los parametros que se le pasan                                 */
@@ -319,7 +308,6 @@ void igWireSphere (int pu, int pv)
 	igCreateQuadricObject (pu, pv, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
 }
 
-
 /******************************************************************************************/
 /* Crea un rulo a partir de las ecuaciones de la supercuadrica                            */
 /* Parametros: int pu --> Numero de divisiones del parametro u                            */
@@ -330,7 +318,6 @@ void igWireRulo (int pu, int pv)
 {
 	igCreateQuadricObject (pu, pv, 1.0f, 1.0f, 1.0f, 1.0f, 0.5f);
 }
-
 
 /******************************************************************************************/
 /* Crea un dado a partir de las ecuaciones de la supercuadrica                            */
@@ -343,7 +330,6 @@ void igWireDado (int pu, int pv)
 	igCreateQuadricObject (pu, pv, 1.0f, 1.0f, 1.0f, 0.5f, 0.5f);
 }
 
-
 /******************************************************************************************/
 /* Crea una semiesfera a partir de las ecuaciones de la supercuadrica                     */
 /* Parametros: int pu --> Numero de divisiones del parametro u                            */
@@ -355,7 +341,6 @@ void igWireSemiSphere (int pu, int pv)
 	igCreateQuadricObject (pu, pv, 1.0f, 0.5f, 1.0f, 1.0f, 1.0f);
 }
 
-
 /******************************************************************************************/
 /* Crea un cono a partir de las ecuaciones de la supercuadrica                            */
 /* Parametros: int pu --> Numero de divisiones del parametro u                            */
@@ -366,7 +351,6 @@ void igWireCone (int pu, int pv)
 {
 	igCreateQuadricObject (pu, pv, 1.0f, 0.5f, 1.0f, 2.0f, 1.0f);
 }
-
 
 /******************************************************************************************/
 /* Dibuja un cono de arista unidad y centrado en el origen                                */
@@ -403,7 +387,6 @@ void igWireCube (void)
 		glVertex3fv (vertices[7]);
 	glEnd ();
 }
-
 
 /******************************************************************************************/
 /* Crea una cuadrica segun los parametros que se le pasan                                 */
@@ -471,7 +454,6 @@ void igSolidSphere (int pu, int pv)
 	igCreateSolidQuadricObject (pu, pv, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
 }
 
-
 /******************************************************************************************/
 /* Crea un rulo a partir de las ecuaciones de la supercuadrica                            */
 /* Parametros: int pu --> Numero de divisiones del parametro u                            */
@@ -482,7 +464,6 @@ void igSolidRulo (int pu, int pv)
 {
 	igCreateSolidQuadricObject (pu, pv, 1.0f, 1.0f, 1.0f, 1.0f, 0.5f);
 }
-
 
 /******************************************************************************************/
 /* Crea un dado a partir de las ecuaciones de la supercuadrica                            */
@@ -495,7 +476,6 @@ void igSolidDado (int pu, int pv)
 	igCreateSolidQuadricObject (pu, pv, 1.0f, 1.0f, 1.0f, 0.5f, 0.5f);
 }
 
-
 /******************************************************************************************/
 /* Crea una semiesfera a partir de las ecuaciones de la supercuadrica                     */
 /* Parametros: int pu --> Numero de divisiones del parametro u                            */
@@ -506,7 +486,6 @@ void igSolidSemiSphere (int pu, int pv)
 {
 	igCreateSolidQuadricObject (pu, pv, 1.0f, 0.5f, 1.0f, 1.0f, 1.0f);
 }
-
 
 /******************************************************************************************/
 /* Crea un cono a partir de las ecuaciones de la supercuadrica                            */
@@ -519,16 +498,14 @@ void igSolidCone (int pu, int pv)
 	igCreateSolidQuadricObject (pu, pv, 1.0f, 0.5f, 1.0f, 2.0f, 1.0f);
 }
 
-
 /******************************************************************************************/
-/* Dibuja un cono de arista unidad y centrado en el origen                                */
+/* Dibuja un cubo de arista unidad y centrado en el origen                                */
 /* Parametros: Ninguno                                                                    */
 /* Salida: Ninguna                                                                        */
 /******************************************************************************************/
 void igSolidCube (void)
 {
-	float vertices[8][3] = {{0.5f, 0.5f, 0.5f}, {0.5f, 0.5f, -0.5f}, {-0.5f, 0.5f, -0.5f}, {-0.5f, 0.5f, 0.5f},
-							{0.5f, -0.5f, 0.5f}, {0.5f, -0.5f, -0.5f}, {-0.5f, -0.5f, -0.5f}, {-0.5f, -0.5f, 0.5f}};
+	float vertices[8][3] = {{0.5f, 0.5f, 0.5f}, {0.5f, 0.5f, -0.5f}, {-0.5f, 0.5f, -0.5f}, {-0.5f, 0.5f, 0.5f}, {0.5f, -0.5f, 0.5f}, {0.5f, -0.5f, -0.5f}, {-0.5f, -0.5f, -0.5f}, {-0.5f, -0.5f, 0.5f}};
 
 	glBegin (GL_TRIANGLE_STRIP);
 		glNormal3f (1.0f, 0.0f, 0.0f);
@@ -572,4 +549,35 @@ void igSolidCube (void)
 /******************************************************************************************/
 void igSolidCylinder(int pu, int pv){
 	igCreateSolidQuadricObject(pu, pv, 1.0f, 1.0f, 1.0f,0.0f,1.0f);
+}
+
+/******************************************************************************************/
+/* Dibuja un prisma triangular de arista unidad y centrado en el origen                   */
+/* Parametros: Ninguno                                                                    */
+/* Salida: Ninguna                                                                        */
+/******************************************************************************************/
+void igTriangularPrism(void){
+	float vertices[6][3] = {{-0.5f,-0.433012701892219f,0.5},{0.5f,-0.433012701892219f,0.5},{0.0f,0.433012701892219f,0.5},{-0.5f,-0.433012701892219f,-0.5},{0.5f,-0.433012701892219f,-0.5},{0.0f,0.433012701892219f,-0.5}};
+	glBegin(GL_TRIANGLE_STRIP);
+		glNormal3f(0.0f, 0.0f, 1.0f);
+		glVertex3fv(vertices[0]);
+		glVertex3fv(vertices[2]);
+		glVertex3fv(vertices[1]);
+		glNormal3f(0.707106781186548f, 0.707106781186548f, 0.0f);
+		glVertex3fv(vertices[5]);
+		glVertex3fv(vertices[4]);
+		glNormal3f(0.0f, 0.0f, 1.0f);
+		glVertex3fv(vertices[3]);
+		glNormal3f(0.0f, 1.0f, 0.0f);
+		glVertex3fv(vertices[1]);
+		glVertex3fv(vertices[0]);
+	glEnd();
+
+	glBegin(GL_TRIANGLE_STRIP);
+		glNormal3f(0.707106781186548f, 0.707106781186548f, 0.0f);
+		glVertex3fv(vertices[2]);
+		glVertex3fv(vertices[0]);
+		glVertex3fv(vertices[5]);
+		glVertex3fv(vertices[3]);
+	glEnd();
 }

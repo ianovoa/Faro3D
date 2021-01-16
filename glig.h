@@ -2,8 +2,6 @@
 /*                                                                       */
 /*                 glig.h LIBRERIA DE MODELADO GEOMETRICO	             */
 /*                                                                       */
-/*   Rev. 2.0  01/01/2002   AUTORES: O. Belmonte, M. Chover, J. Ribelles */
-/*                                                                       */
 /*************************************************************************/
 
 // Devuelve la coordenada de un punto en R3 a partir de un punto (u,v)
@@ -89,3 +87,6 @@ void igSolidCube (void);
 
 // Crea un cilindro a partir de las ecuaciones de la supercuadrica
 void igSolidCylinder(int pu, int pv);
+
+// Crea un prisma triangular de arista unidad y centrado en el origen
+void igTriangularPrism(void);
