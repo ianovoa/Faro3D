@@ -24,6 +24,7 @@ void IniciaDisplayLists (void){
 	CreaPuerta();
 	CreaVentana();
 	CreaVidrio();
+	CreaOjoBuey();
 	CreaFaro();
 	CreaCasa();
 }
@@ -295,6 +296,48 @@ void CreaVidrio() {
 	}
 }
 
+void CreaOjoBuey() {
+	ojo = glGenLists(1);
+	if (ojo != 0) { // Cero no es un identificador valido para una display list
+		glNewList(ojo, GL_COMPILE);
+
+		//  Código para dibujar ojo de buey
+		//  Marco
+		glPushMatrix();
+			glColor3f(0.9f, 0.91f, 0.91f);
+			glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+			glScalef(0.5f, 0.01f, 0.5f);
+			igSolidCone(100, 100);
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.9f, 0.91f, 0.91f);
+			glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+			glTranslatef(0.0f, -0.25f, 0.0f);
+			glScalef(0.5f, 0.25f, 0.5f);
+			igSolidCylinder(100, 100);
+		glPopMatrix();
+
+		//  Vidrio
+		glPushMatrix();
+			glColor3f(0.68f, 0.84f, 0.95f);
+			glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+			glTranslatef(0.0f, 0.01f, 0.0f);
+			glScalef(0.375f, 0.01f, 0.375f);
+			igSolidCone(100, 100);
+		glPopMatrix();
+
+		//  Marco interno
+		glPushMatrix();
+			glColor3f(0.9f, 0.91f, 0.91f);
+			glScalef(0.75f, 0.08f, 0.07f);
+			igSolidCube();
+		glPopMatrix();
+
+		glEndList();
+	}
+}
+
 void CreaFaro() {
 	faro = glGenLists(1);
 	if (faro != 0) { // Cero no es un identificador valido para una display list
@@ -457,8 +500,83 @@ void CreaCasa() {
 
 		//  Ventanas
 		glPushMatrix();
-
+			glTranslatef(0.0f, 1.25f, 4.0f);
+			glCallList(ventana);
 		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(0.0f, 2.75f, 4.0f);
+			glCallList(ojo);
+		glPopMatrix();
+
+		glPushMatrix();
+			glRotatef(180.0f, 0.0f, 1.0f, 0.0f);
+			glTranslatef(0.0f, 2.75f, 4.0f);
+			glCallList(ojo);
+		glPopMatrix();
+
+		for (int i = 0; i < 2; i++) {
+			glPushMatrix();
+				glTranslatef(2.25f, -0.75f + 2.0f * i, 4.0f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glTranslatef(-2.25f, -0.75f + 2.0f * i, 4.0f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glTranslatef(0.0f, -0.75f + 2.0f * i, -4.0f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glTranslatef(2.25f, -0.75f + 2.0f * i, -4.0f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glTranslatef(-2.25f, -0.75f + 2.0f * i, -4.0f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+				glTranslatef(0.0f, -0.75f + 2.0f * i, -4.0f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+				glTranslatef(-2.25f, -0.75f + 2.0f * i, -4.0f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+				glTranslatef(2.25f, -0.75f + 2.0f * i, -4.0f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+				glTranslatef(0.0f, -0.75f + 2.0f * i, 4.0f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+				glTranslatef(-2.25f, -0.75f + 2.0f * i, 4.0f);
+				glCallList(ventana);
+			glPopMatrix();
+
+			glPushMatrix();
+				glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+				glTranslatef(2.25f, -0.75f + 2.0f * i, 4.0f);
+				glCallList(ventana);
+			glPopMatrix();
+		}
 
 		glEndList();
 	}
