@@ -27,6 +27,7 @@ void IniciaDisplayLists (void){
 	CreaOjoBuey();
 	CreaFaro();
 	CreaCasa();
+	CreaEscena();
 }
 
 /*void CreaEscalera() {
@@ -577,6 +578,21 @@ void CreaCasa() {
 				glCallList(ventana);
 			glPopMatrix();
 		}
+
+		glEndList();
+	}
+}
+
+void CreaEscena() {
+	escena = glGenLists(1);
+	if (escena != 0) { // Cero no es un identificador valido para una display list
+		glNewList(escena, GL_COMPILE);
+
+		//  Código para dibujar la escena
+		//  Estructuras
+		glPushMatrix();
+
+		glPopMatrix();
 
 		glEndList();
 	}

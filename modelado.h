@@ -12,7 +12,7 @@
 
 
 // Identificadores de las display list
-GLuint abeto,arbol,carballo,puerta,pomo,ventana,vidrio,ojo,faro,casa;
+GLuint abeto,arbol,carballo,puerta,pomo,ventana,vidrio,ojo,faro,casa,escena;
 
 // Definición Funciones de modelado
 void IniciaDisplayLists();
@@ -26,5 +26,6 @@ void CreaVidrio();
 void CreaOjoBuey();
 void CreaFaro();
 void CreaCasa();
+void CreaEscena();
 
 #endif
