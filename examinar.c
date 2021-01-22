@@ -194,7 +194,7 @@ void Dibuja (void)
 	gluLookAt (ox, oy, oz, ix, iy, iz, 0, 1, 0);
 
 	// Llamadas a las display lists
-	glCallList(casa);
+	glCallList(escena);
 	
 	//DibujaEscena ();
 

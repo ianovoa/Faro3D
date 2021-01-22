@@ -1,7 +1,6 @@
 /*************************************************************************/
 /*                                                                       */
-/*   modelado.c                                                          */
-/*   27/10/03  AUTORES: C.Rebollo                                        */
+/*								modelado.c                               */
 /*                                                                       */
 /*************************************************************************/
 
@@ -11,8 +10,7 @@
 
 
 /******************************************************************************************/
-/* Crea los distintos objetos. En este caso un abeto, si tuviese mas objetos, los pondría */
-/* a continuación.                                                                        */
+/* Crea los distintos objetos.															  */
 /* Parametros: ninguno                                                                    */
 /* Salida: Ninguna                                                                        */
 /******************************************************************************************/
@@ -25,39 +23,11 @@ void IniciaDisplayLists (void){
 	CreaVentana();
 	CreaVidrio();
 	CreaOjoBuey();
+	CreaSuelo();
 	CreaFaro();
 	CreaCasa();
 	CreaEscena();
 }
-
-/*void CreaEscalera() {
-	escalera=glGenLists(1);
-	if (escalera !=0) { // Cero no es un identificador valido para una display list
-		glNewList(escalera, GL_COMPILE);
-		//  Código para dibujar la escalera
-		//  Primero dibujo del eje
-		glPushMatrix();
-			glScalef(0.2f, 2.0f, 0.2f);
-			igWireCube();
-		glPopMatrix();
-
-		//  Segundo dibujo escalones
-		glPushMatrix();
-			glTranslatef(0.0f, -1.0f, 0.0f);
-			for (int i = 0; i < 11; i++) {
-				glRotatef(30.0f, 0.0f, 1.0f, 0.0f);
-				glPushMatrix();
-					glScalef(0.5f, 0.05f, 0.1f);
-					glTranslatef(0.5f, 0.0f, 0.0f);
-					igWireCube();
-				glPopMatrix();
-				glTranslatef(0.0f, 0.2f, 0.0f);
-			}
-		glPopMatrix();
-		glEndList ();
-	}
-}
-*/
 
 void CreaAbeto(void) {
 	abeto = glGenLists(1);
@@ -339,6 +309,32 @@ void CreaOjoBuey() {
 	}
 }
 
+void CreaSuelo() {
+	suelo = glGenLists(1);
+	if (suelo != 0) { // Cero no es un identificador valido para una display list
+		glNewList(suelo, GL_COMPILE);
+
+		//  Código para dibujar el faro
+		//  Tierra
+		glPushMatrix();
+			glColor3f(0.21f, 0.41f, 0.18f);
+			glTranslatef(15.0f, 0.0f, 0.0f);
+			glScalef(40.0f, 1.0f, 50.0f);
+			igSolidCube();
+		glPopMatrix();
+
+		//  Mar
+		glPushMatrix();
+			glColor3f(0.23f, 0.51f, 0.74f);
+			glTranslatef(-10.0f, 0.0f, 0.0f);
+			glScalef(10.0f, 1.0f, 50.0f);
+			igSolidCube();
+		glPopMatrix();
+
+		glEndList();
+	}
+}
+
 void CreaFaro() {
 	faro = glGenLists(1);
 	if (faro != 0) { // Cero no es un identificador valido para una display list
@@ -471,6 +467,14 @@ void CreaCasa() {
 		glNewList(casa, GL_COMPILE);
 
 		//  Código para dibujar la casa
+		//  Base
+		glPushMatrix();
+			glColor3f(0.48f, 0.49f, 0.49f);
+			glTranslatef(0.0f, -2.3f, 0.0f);
+			glScalef(10.0f, 0.25f, 10.0f);
+			igSolidCube();
+		glPopMatrix();
+
 		//  Estructura
 		glPushMatrix();
 			glColor3f(0.93f, 0.94f, 0.95f);
@@ -589,9 +593,35 @@ void CreaEscena() {
 		glNewList(escena, GL_COMPILE);
 
 		//  Código para dibujar la escena
-		//  Estructuras
-		glPushMatrix();
+		//  Centro (borrar despues)
+		/*glPushMatrix();
+			glScalef(0.25f, 8.0f, 0.25f);
+			igSolidCube();
+		glPopMatrix();*/
 
+		//  Suelo
+		glPushMatrix();
+		glCallList(suelo);
+		glPopMatrix();
+
+		//  Faro
+		glPushMatrix();
+			glTranslatef(0.0f, 0.5f, -8.0f);
+			glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
+			glCallList(faro);
+		glPopMatrix();
+
+		//  Casa
+		glPushMatrix();
+			glTranslatef(15.0f, 2.8f, 0.0f);
+			glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+			glCallList(casa);
+		glPopMatrix();
+
+		//  Arboles
+		glPushMatrix();
+			glTranslatef(0.0f, 1.5f, 8.0f);
+			glCallList(arbol);
 		glPopMatrix();
 
 		glEndList();

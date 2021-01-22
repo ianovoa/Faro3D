@@ -1,7 +1,6 @@
 /*************************************************************************/
 /*                                                                       */
-/*   modelado.h                                                          */
-/*   Rev. 27/10/03   AUTORES: C.Rebollo
+/*								modelado.h                               */
 /*                                                                       */
 /*************************************************************************/
 
@@ -12,7 +11,7 @@
 
 
 // Identificadores de las display list
-GLuint abeto,arbol,carballo,puerta,pomo,ventana,vidrio,ojo,faro,casa,escena;
+GLuint abeto,arbol,carballo,puerta,pomo,ventana,vidrio,ojo,suelo,faro,casa,escena;
 
 // Definición Funciones de modelado
 void IniciaDisplayLists();
@@ -24,6 +23,7 @@ void CreaPuerta();
 void CreaVentana();
 void CreaVidrio();
 void CreaOjoBuey();
+void CreaSuelo();
 void CreaFaro();
 void CreaCasa();
 void CreaEscena();
