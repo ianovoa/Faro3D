@@ -259,7 +259,7 @@ void igCreateQuadricObject (int pu, int pv, float uMax, float vMax, float R, flo
 
     v = 0.0; 
     u =0.0; 
-    inc_u = uMax/pu; // donde 10 es el número de puntos en u
+    inc_u = uMax/pu; // donde 10 es el numero de puntos en u
 	inc_v = vMax/pv;
 
 	for (j = 0; j <= pv; j++)
@@ -408,7 +408,7 @@ void igCreateSolidQuadricObject (int pu, int pv, float uMax, float vMax, float R
 
     v = 0.0; 
     u =0.0; 
-    inc_u = uMax/pu; // donde 10 es el número de puntos en u
+    inc_u = uMax/pu; // donde 10 es el numero de puntos en u
 	inc_v = vMax/pv;
 
 	for (j = 0; j < pv; j++)

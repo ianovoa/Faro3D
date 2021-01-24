@@ -24,6 +24,7 @@ void IniciaDisplayLists (void){
 	CreaVidrio();
 	CreaOjoBuey();
 	CreaSuelo();
+	CreaBuzon();
 	CreaFaro();
 	CreaCasa();
 	CreaEscena();
@@ -34,7 +35,7 @@ void CreaAbeto(void) {
 	if (abeto != 0) { // Cero no es un identificador valido para una display list
 		glNewList(abeto, GL_COMPILE);
 
-		//  Código para dibujar el abeto
+		//  Codigo para dibujar el abeto
 		//  Copa
 		glPushMatrix();
 			glColor3f(0.11f, 0.51f, 0.28f);
@@ -69,7 +70,7 @@ void CreaArbol() {
 	if (arbol != 0) { // Cero no es un identificador valido para una display list
 		glNewList(arbol, GL_COMPILE);
 
-		//  Código para dibujar el arbol
+		//  Codigo para dibujar el arbol
 		//  Copa
 		glPushMatrix();
 			glColor3f(0.11f, 0.51f, 0.28f);
@@ -94,7 +95,7 @@ void CreaCarballo() {
 	if (carballo != 0) { // Cero no es un identificador valido para una display list
 		glNewList(carballo, GL_COMPILE);
 
-		//  Código para dibujar el carballo
+		//  Codigo para dibujar el carballo
 		//  Copa
 		glPushMatrix();
 			glColor3f(0.11f, 0.51f, 0.28f);
@@ -119,7 +120,7 @@ void CreaPomo() {
 	if (pomo != 0) { // Cero no es un identificador valido para una display list
 		glNewList(pomo, GL_COMPILE);
 
-		//  Código para dibujar el pomo
+		//  Codigo para dibujar el pomo
 		glPushMatrix();
 			glColor3f(0.9f, 0.91f, 0.91f);
 			glScalef(0.3f, 0.5f, 0.3f);
@@ -142,7 +143,7 @@ void CreaPuerta() {
 	if (puerta != 0) { // Cero no es un identificador valido para una display list
 		glNewList(puerta, GL_COMPILE);
 
-		//  Código para dibujar la puerta
+		//  Codigo para dibujar la puerta
 		//  Tabla
 		glPushMatrix();
 			glColor3f(0.9f, 0.6f, 0.4f);
@@ -167,7 +168,7 @@ void CreaVentana() {
 	if (ventana != 0) { // Cero no es un identificador valido para una display list
 		glNewList(ventana, GL_COMPILE);
 
-		//  Código para dibujar la puerta
+		//  Codigo para dibujar la puerta
 		//  Marco
 		glPushMatrix();
 			glColor3f(0.9f, 0.91f, 0.91f);
@@ -226,7 +227,7 @@ void CreaVidrio() {
 	if (vidrio != 0) { // Cero no es un identificador valido para una display list
 		glNewList(vidrio, GL_COMPILE);
 
-		//  Código para dibujar el vidrio
+		//  Codigo para dibujar el vidrio
 		//  Marco
 		glPushMatrix();
 			glColor3f(0.9f, 0.91f, 0.91f);
@@ -272,7 +273,7 @@ void CreaOjoBuey() {
 	if (ojo != 0) { // Cero no es un identificador valido para una display list
 		glNewList(ojo, GL_COMPILE);
 
-		//  Código para dibujar ojo de buey
+		//  Codigo para dibujar ojo de buey
 		//  Marco
 		glPushMatrix();
 			glColor3f(0.9f, 0.91f, 0.91f);
@@ -314,7 +315,7 @@ void CreaSuelo() {
 	if (suelo != 0) { // Cero no es un identificador valido para una display list
 		glNewList(suelo, GL_COMPILE);
 
-		//  Código para dibujar el faro
+		//  Codigo para dibujar el faro
 		//  Tierra
 		glPushMatrix();
 			glColor3f(0.21f, 0.41f, 0.18f);
@@ -335,12 +336,78 @@ void CreaSuelo() {
 	}
 }
 
+void CreaBuzon() {
+	buzon = glGenLists(1);
+	if (buzon != 0) { // Cero no es un identificador valido para una display list
+		glNewList(buzon, GL_COMPILE);
+
+		//  Codigo para dibujar el buzon
+		//  Poster
+		glPushMatrix();
+			glColor3f(0.9f, 0.6f, 0.4f);
+			glScalef(0.1f, 0.75f, 0.1f);
+			igSolidCube();
+		glPopMatrix();
+
+		//  Caja
+		glPushMatrix();
+			glColor3f(0.54f, 0.58f, 0.59f);
+			glTranslatef(0.0f, 0.5f, 0.0f);
+			glScalef(0.25f, 0.25f, 0.5f);
+			igSolidCube();
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.54f, 0.58f, 0.59f);
+			glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+			glTranslatef(0.0f, 0.25f, -0.625f);
+			glScalef(0.125f, 0.005f, 0.125f);
+			igSolidCone(100, 100);
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.54f, 0.58f, 0.59f);
+			glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+			glTranslatef(0.0f, 0.0f, -0.625f);
+			glScalef(0.125f, 0.25f, 0.125f);
+			igSolidCylinder(100, 100);
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.54f, 0.58f, 0.59f);
+			glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+			glTranslatef(0.0f, 0.25f, 0.625f);
+			glScalef(0.125f, 0.005f, 0.125f);
+			igSolidCone(100, 100);
+		glPopMatrix();
+
+		//  Banderilla
+		glPushMatrix();
+			glColor3f(0.75f, 0.0f, 0.0f);
+			glTranslatef(0.145f, 0.65f, 0.0f);
+			glScalef(0.025f, 0.25f, 0.025f);
+			igSolidCube();
+		glPopMatrix();
+
+		glPushMatrix();
+			glColor3f(0.75f, 0.0f, 0.0f);
+			glRotatef(90.0f, 0.0f, 0.0f, 1.0f);
+			glTranslatef(0.7125f, -0.145f, 0.065f);
+			glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+			glScalef(0.125f, 0.125f, 0.02f);
+			igTriangularPrism();
+		glPopMatrix();
+
+		glEndList();
+	}
+}
+
 void CreaFaro() {
 	faro = glGenLists(1);
 	if (faro != 0) { // Cero no es un identificador valido para una display list
 		glNewList(faro, GL_COMPILE);
 
-		//  Código para dibujar el faro
+		//  Codigo para dibujar el faro
 		//  Base
 		glPushMatrix();
 			glColor3f(0.48f, 0.49f, 0.49f);
@@ -466,7 +533,7 @@ void CreaCasa() {
 	if (casa != 0) { // Cero no es un identificador valido para una display list
 		glNewList(casa, GL_COMPILE);
 
-		//  Código para dibujar la casa
+		//  Codigo para dibujar la casa
 		//  Base
 		glPushMatrix();
 			glColor3f(0.48f, 0.49f, 0.49f);
@@ -592,13 +659,7 @@ void CreaEscena() {
 	if (escena != 0) { // Cero no es un identificador valido para una display list
 		glNewList(escena, GL_COMPILE);
 
-		//  Código para dibujar la escena
-		//  Centro (borrar despues)
-		/*glPushMatrix();
-			glScalef(0.25f, 8.0f, 0.25f);
-			igSolidCube();
-		glPopMatrix();*/
-
+		//  Codigo para dibujar la escena
 		//  Suelo
 		glPushMatrix();
 		glCallList(suelo);
@@ -618,10 +679,72 @@ void CreaEscena() {
 			glCallList(casa);
 		glPopMatrix();
 
+		//  Buzon
+		glPushMatrix();
+			glTranslatef(9.25f, 0.8f, 1.5f);
+			glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+			glCallList(buzon);
+		glPopMatrix();
+
 		//  Arboles
 		glPushMatrix();
-			glTranslatef(0.0f, 1.5f, 8.0f);
+			glTranslatef(9.0f, 1.5f, -8.0f);
 			glCallList(arbol);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(11.0f, 1.5f, -8.0f);
+			glCallList(abeto);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(10.0f, 1.5f, -9.5f);
+			glCallList(carballo);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(12.0f, 1.5f, -9.5f);
+			glCallList(arbol);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(8.5f, 1.5f, -9.0f);
+			glCallList(abeto);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(7.0f, 1.5f, -8.0f);
+			glCallList(carballo);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(9.0f, 1.5f, -11.0f);
+			glCallList(arbol);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(11.5f, 1.5f, -11.0f);
+			glCallList(abeto);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(10.0f, 1.5f, -13.0f);
+			glCallList(carballo);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(12.0f, 1.5f, -12.5f);
+			glCallList(arbol);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(8.5f, 1.5f, -12.0f);
+			glCallList(abeto);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(7.0f, 1.5f, -11.0f);
+			glCallList(carballo);
 		glPopMatrix();
 
 		glEndList();

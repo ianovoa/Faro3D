@@ -1,7 +1,6 @@
 /*************************************************************************/
 /*                                                                       */
-/*   examinar.c                                                          */
-/*   Rev. 2.0  01/01/2002   AUTORES: O. Belmonte, M. Chover, J. Ribelles */
+/*								examinar.c                               */
 /*                                                                       */
 /*************************************************************************/
 
@@ -194,6 +193,8 @@ void Dibuja (void)
 	gluLookAt (ox, oy, oz, ix, iy, iz, 0, 1, 0);
 
 	// Llamadas a las display lists
+	glRotatef(30.0f, 0.0f, 1.0f, 0.0f);
+	glTranslatef(0.0f, -1.75f, -8.0f);
 	glCallList(escena);
 	
 	//DibujaEscena ();
