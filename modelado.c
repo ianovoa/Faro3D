@@ -38,7 +38,7 @@ void CreaAbeto(void) {
 		//  Codigo para dibujar el abeto
 		//  Copa
 		glPushMatrix();
-			glColor3f(0.11f, 0.51f, 0.28f);
+			glColor3f(0.05f, 0.38f, 0.32f);
 			glScalef(0.75f, 1.0f, 0.75f);
 			igSolidCone(100, 100);
 		glPopMatrix();
@@ -73,7 +73,7 @@ void CreaArbol() {
 		//  Codigo para dibujar el arbol
 		//  Copa
 		glPushMatrix();
-			glColor3f(0.11f, 0.51f, 0.28f);
+			glColor3f(0.18f, 0.8f, 0.44f);
 			glScalef(0.5f, 1.0f, 0.5f);
 			glTranslatef(0.0f, 0.5f, 0.0f);
 			igSolidSphere(100,100);
@@ -384,7 +384,7 @@ void CreaBuzon() {
 		//  Banderilla
 		glPushMatrix();
 			glColor3f(0.75f, 0.0f, 0.0f);
-			glTranslatef(0.145f, 0.65f, 0.0f);
+			glTranslatef(0.145f, 0.65f, 0.15f);
 			glScalef(0.025f, 0.25f, 0.025f);
 			igSolidCube();
 		glPopMatrix();
@@ -392,7 +392,7 @@ void CreaBuzon() {
 		glPushMatrix();
 			glColor3f(0.75f, 0.0f, 0.0f);
 			glRotatef(90.0f, 0.0f, 0.0f, 1.0f);
-			glTranslatef(0.7125f, -0.145f, 0.065f);
+			glTranslatef(0.7125f, -0.145f, 0.215f);
 			glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 			glScalef(0.125f, 0.125f, 0.02f);
 			igTriangularPrism();
